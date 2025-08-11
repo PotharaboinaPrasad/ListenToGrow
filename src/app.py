@@ -23,10 +23,9 @@ def convert():
 
     if audio_file_path:
         audio_filename = os.path.basename(audio_file_path)
-        # Move audio file to static folder for serving
         return render_template('index.html', audio_file=audio_filename)
     else:
         return render_template('index.html', audio_file=None)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=10000)
