@@ -1,0 +1,53 @@
+/* Background Styling */
+body {
+    font-family: Arial, sans-serif;
+    background: url('/static/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    text-align: center;
+    padding: 50px;
+    margin: 0;
+}
+
+/* Container Box */
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    max-width: 500px;
+    margin: auto;
+}
+
+/* File & Submit Inputs */
+input[type="file"], input[type="submit"] {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+/* Submit Button */
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+/* Audio Player */
+audio {
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* Loading Text */
+.loading {
+    display: none;
+    margin-top: 15px;
+    font-style: italic;
+    color: gray;
+}

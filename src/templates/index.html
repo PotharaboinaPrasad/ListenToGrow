@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ListenToGrow</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script>
+        function showLoading() {
+            document.getElementById("loading").style.display = "block";
+        }
+    </script>
+    <style>
+        body {
+        margin: 0;
+        padding: 0;
+        background-image: url('background.webp');
+        background-size: cover;       /* Make it cover the whole page */
+        background-position: center;  /* Center the image */
+        background-repeat: no-repeat; /* Avoid tiling */
+        font-family: Arial, sans-serif;
+        color: white;
+    }
+
+    .content {
+        background-color: rgba(0, 0, 0, 0.5); /* Transparent overlay */
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+        margin-top: 100px;
+        border-radius: 10px;
+    }
+     body {
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+             background: url("{{ url_for('static', filename='background.webp') }}") no-repeat center center fixed;
+            background-size: cover;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+            margin: 0;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            max-width: 500px;
+            margin: auto;
+            animation: fadeIn 1s ease-in-out;
+
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #4a47a3;
+        }
+        p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+        input[type="file"], input[type="submit"] {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        input[type="file"] {
+            background-color: #f0f0f0;
+        }
+        input[type="submit"] {
+            background-color: #667eea;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        input[type="submit"]:hover {
+            background-color: #5563c1;
+            transform: scale(1.05);
+        }
+        audio {
+            margin-top: 20px;
+            width: 100%;
+        }
+        .loading {
+            display: none;
+            margin-top: 15px;
+            font-style: italic;
+            color: #666;
+            animation: pulse 1s infinite;
+        }
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #667eea;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📚 ListenToGrow 🎧</h1>
+        <p>Upload a book and listen instantly!</p>
+
+        <form action="/convert" method="post" enctype="multipart/form-data" onsubmit="showLoading()">
+            <input type="file" name="book" accept=".pdf,.txt,.docx,.epub" required><br><br>
+            <input type="submit" value="Convert to Audio">
+        </form>
+
+        <div id="loading" class="loading">Generating audio... Please wait.</div>
+
+        {% if audio_file %}
+            <h3>Your Audiobook:</h3>
+            <audio controls>
+                <source src="{{ url_for('static', filename=audio_file) }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            <br>
+            <a href="{{ url_for('static', filename=audio_file) }}" download>⬇ Download Audio</a>
+        {% endif %}
+    </div>
+</body>
+</html>
