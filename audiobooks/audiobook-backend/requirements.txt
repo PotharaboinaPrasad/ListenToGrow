@@ -1,0 +1,6 @@
+Flask
+PyPDF2
+pillow
+pytesseract
+gTTS
+Werkzeug
